@@ -9,6 +9,8 @@ import uno.cards.UnoCard;
 import uno.cards.Value;
 
 public abstract class WildCard extends UnoCard implements ColorEffect {
+    private Color tmpColor = null;
+
     public WildCard(Value value) {
         super(Color.BLACK, value);
     }
@@ -18,6 +20,15 @@ public abstract class WildCard extends UnoCard implements ColorEffect {
         return true;
     }
 
+    public Color getTmpColor() {
+        return this.tmpColor;
+    }
+
+    public void setTmpColor(Color color) {
+        this.tmpColor = color;
+    }
+
+    @Override
     public void changeColor() throws IOException {
         BufferedReader r = new BufferedReader(
                 new InputStreamReader(System.in));
@@ -27,22 +38,22 @@ public abstract class WildCard extends UnoCard implements ColorEffect {
         do {
             System.out.println("Select a color RED (R), GREEN (G), BLUE (B) or YELLOW (Y)!");
             s = r.readLine().toUpperCase();
-            if (s.equals('R') || s.equals('G') || s.equals('B') || s.equals('Y'))
+            if (s.equals("R") || s.equals("G") || s.equals("B") || s.equals("Y"))
                 input = true;
         } while (!input);
 
         switch (s) {
             case "R":
-                color = Color.RED;
+                setTmpColor(Color.RED);
                 break;
             case "G":
-                color = Color.GREEN;
+                setTmpColor(Color.GREEN);
                 break;
             case "B":
-                color = Color.BLUE;
+                setTmpColor(Color.BLUE);
                 break;
             case "Y":
-                color = Color.YELLOW;
+                setTmpColor(Color.YELLOW);
                 break;
 
         }

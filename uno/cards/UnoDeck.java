@@ -158,4 +158,17 @@ public class UnoDeck {
             System.out.println(e.getMessage());
         }
     }
+
+    /**
+     * Method resetting deck after emptying drawpile.
+     * 
+     * @param deck the discard pile.
+     */
+    public void resetDeck(UnoDeck deck) {
+        while (this.cardsInDeck != 108 && deck.getDeckSize() != 0 || deck.getTopCard() != null) {
+            addCard(deck.getTopCard());
+            deck.removeCard(1);
+        }
+        shuffleDeck();
+    }
 }

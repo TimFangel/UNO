@@ -13,12 +13,14 @@ public class GameState {
     private UnoDeck discardPile;
     private UnoDeck drawPile;
     private int turn = 0;
+    private int drawCount = 0;
 
     public GameState() {
         this.discardPile = new UnoDeck(false);
         this.drawPile = new UnoDeck(true);
         try {
             initPlayers();
+            printPlayers();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -30,6 +32,13 @@ public class GameState {
 
     public void printTurn() {
         System.out.println("Player: " + (getTurn() + 1) + "\'s turn!");
+    }
+
+    public void printPlayers() {
+        System.out.println("List of players:");
+        for (Player player : players) {
+            System.out.println(player.getName());
+        }
     }
 
     /**
@@ -115,5 +124,9 @@ public class GameState {
      */
     public void playerFinished() {
         rankings.add(players[this.turn]);
+    }
+
+    public void playGame() {
+
     }
 }
